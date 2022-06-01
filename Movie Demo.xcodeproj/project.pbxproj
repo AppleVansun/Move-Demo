@@ -13,10 +13,13 @@
 		736074902846C25F00DA79F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7360748E2846C25F00DA79F4 /* Main.storyboard */; };
 		736074922846C26000DA79F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 736074912846C26000DA79F4 /* Assets.xcassets */; };
 		736074952846C26000DA79F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 736074932846C26000DA79F4 /* LaunchScreen.storyboard */; };
+		7360749E2846C2E000DA79F4 /* Movie Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7360749D2846C2E000DA79F4 /* Movie Manager.swift */; };
+		736074A02846C31700DA79F4 /* Movie Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7360749F2846C31700DA79F4 /* Movie Model.swift */; };
+		736074A22846C36F00DA79F4 /* Movie data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736074A12846C36F00DA79F4 /* Movie data.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		736074852846C25F00DA79F4 /* Move Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Move Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		736074852846C25F00DA79F4 /* Movie Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Movie Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		736074882846C25F00DA79F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7360748A2846C25F00DA79F4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7360748C2846C25F00DA79F4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +27,9 @@
 		736074912846C26000DA79F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		736074942846C26000DA79F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		736074962846C26000DA79F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7360749D2846C2E000DA79F4 /* Movie Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movie Manager.swift"; sourceTree = "<group>"; };
+		7360749F2846C31700DA79F4 /* Movie Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movie Model.swift"; sourceTree = "<group>"; };
+		736074A12846C36F00DA79F4 /* Movie data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movie data.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,7 +54,7 @@
 		736074862846C25F00DA79F4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				736074852846C25F00DA79F4 /* Move Demo.app */,
+				736074852846C25F00DA79F4 /* Movie Demo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -56,6 +62,7 @@
 		736074872846C25F00DA79F4 /* Move Demo */ = {
 			isa = PBXGroup;
 			children = (
+				7360749C2846C2B000DA79F4 /* Movie manager */,
 				736074882846C25F00DA79F4 /* AppDelegate.swift */,
 				7360748A2846C25F00DA79F4 /* SceneDelegate.swift */,
 				7360748C2846C25F00DA79F4 /* ViewController.swift */,
@@ -67,12 +74,22 @@
 			path = "Move Demo";
 			sourceTree = "<group>";
 		};
+		7360749C2846C2B000DA79F4 /* Movie manager */ = {
+			isa = PBXGroup;
+			children = (
+				7360749D2846C2E000DA79F4 /* Movie Manager.swift */,
+				7360749F2846C31700DA79F4 /* Movie Model.swift */,
+				736074A12846C36F00DA79F4 /* Movie data.swift */,
+			);
+			path = "Movie manager";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		736074842846C25F00DA79F4 /* Move Demo */ = {
+		736074842846C25F00DA79F4 /* Movie Demo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 736074992846C26000DA79F4 /* Build configuration list for PBXNativeTarget "Move Demo" */;
+			buildConfigurationList = 736074992846C26000DA79F4 /* Build configuration list for PBXNativeTarget "Movie Demo" */;
 			buildPhases = (
 				736074812846C25F00DA79F4 /* Sources */,
 				736074822846C25F00DA79F4 /* Frameworks */,
@@ -82,9 +99,9 @@
 			);
 			dependencies = (
 			);
-			name = "Move Demo";
+			name = "Movie Demo";
 			productName = "Move Demo";
-			productReference = 736074852846C25F00DA79F4 /* Move Demo.app */;
+			productReference = 736074852846C25F00DA79F4 /* Movie Demo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -102,7 +119,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 736074802846C25F00DA79F4 /* Build configuration list for PBXProject "Move Demo" */;
+			buildConfigurationList = 736074802846C25F00DA79F4 /* Build configuration list for PBXProject "Movie Demo" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -115,7 +132,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				736074842846C25F00DA79F4 /* Move Demo */,
+				736074842846C25F00DA79F4 /* Movie Demo */,
 			);
 		};
 /* End PBXProject section */
@@ -139,8 +156,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				7360748D2846C25F00DA79F4 /* ViewController.swift in Sources */,
+				736074A22846C36F00DA79F4 /* Movie data.swift in Sources */,
 				736074892846C25F00DA79F4 /* AppDelegate.swift in Sources */,
 				7360748B2846C25F00DA79F4 /* SceneDelegate.swift in Sources */,
+				736074A02846C31700DA79F4 /* Movie Model.swift in Sources */,
+				7360749E2846C2E000DA79F4 /* Movie Manager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,7 +361,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		736074802846C25F00DA79F4 /* Build configuration list for PBXProject "Move Demo" */ = {
+		736074802846C25F00DA79F4 /* Build configuration list for PBXProject "Movie Demo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				736074972846C26000DA79F4 /* Debug */,
@@ -350,7 +370,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		736074992846C26000DA79F4 /* Build configuration list for PBXNativeTarget "Move Demo" */ = {
+		736074992846C26000DA79F4 /* Build configuration list for PBXNativeTarget "Movie Demo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7360749A2846C26000DA79F4 /* Debug */,
