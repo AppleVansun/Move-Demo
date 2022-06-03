@@ -8,25 +8,23 @@
 import Foundation
 
 
-protocol WeatherManagerDelegate {
-    func didUpdateWeather(_ weatherManager: WeatherManager, weather: WeatherModel)
+protocol MovieManagerDelegate {
+    func didUpdateListOfMovies(_ movieManager: MoviesManager, movies: [MovieModel])
     func didFailWithError(error: Error)
 }
 
-struct WeatherManager {
+struct MoviesManager {
     
-    var delegate : WeatherManagerDelegate?
-    let wetherURL = "https://api.themoviedb.org/3/discover/movie?api_key=e9d089d86a9be0071f7eb06ee44c9a88&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate#"
+    var delegate : MovieManagerDelegate?
+    let movieURL = "https://api.themoviedb.org/3/discover/movie?api_key=e9d089d86a9be0071f7eb06ee44c9a88&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate#"
     // key: e9d089d86a9be0071f7eb06ee44c9a88
-    // example: https://api.themoviedb.org/3/discover/movie?api_key=e9d089d86a9be0071f7eb06ee44c9a88&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate#
-    
-    func fetchWether (cityName: String) {
-        let stringURL = wetherURL + "q=" + cityName
+    func fetchMovies () {
+        let stringURL = movieURL
         performRequest(with: stringURL)
-        print(stringURL)
+        //print(stringURL)
     }
     
-   
+    
     
     
     func performRequest (with stringURL: String) {
@@ -41,9 +39,9 @@ struct WeatherManager {
                     return
                 }
                 if let safeData = data {
-                    if let weather = self.parseJSON(safeData){
-                        delegate?.didUpdateWeather(self, weather: weather)
-                        print(weather)
+                    if let results = self.parseJSON(safeData){
+                        delegate?.didUpdateListOfMovies(self, movies: results)
+                        //print(results[0])
                     }
                 }
             }
@@ -51,15 +49,34 @@ struct WeatherManager {
         }
     }
     
-    func parseJSON (_ data: Data) -> WeatherModel? {
+    func parseJSON (_ data: Data) -> [MovieModel]? {
         let decoder = JSONDecoder()
         do {
-            let decoderedData = try decoder.decode(WeatherData.self, from: data)
-            let id = decoderedData.weather[0].id
-            let city = decoderedData.name
-            let temp = decoderedData.main.temp
-            let weatherModel = WeatherModel(cityName: city, temperature: temp, conditionId: id)
-            return weatherModel
+            let decoderedData = try decoder.decode(MovieData.self, from: data)
+            
+            var moviesModels = [MovieModel]()
+            
+            for each in decoderedData.results {
+                
+                let name = each.title
+                //SaveDataMovie.movieTitle.append(each.title)
+                
+                let reliseDate = each.release_date
+                //SaveDataMovie.movieReleaseDate.append(each.release_date)
+                
+                let movieDescription = each.overview
+                //SaveDataMovie.movieOverview.append(each.overview)
+                
+                let popularity = each.popularity
+                //SaveDataMovie.moviePopularity.append(each.popularity)
+                
+                let poster = each.poster_path
+                //SaveDataMovie.poster.append(each.poster_path)
+                
+                let temp = MovieModel(movieTitle: name, movieOverview: movieDescription, moviePopularity: popularity, poster: poster, movieReleaseDate: reliseDate)
+                moviesModels.append(temp)
+            }
+            return moviesModels
         } catch {
             delegate?.didFailWithError(error: error)
             return nil

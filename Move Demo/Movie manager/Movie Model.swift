@@ -7,17 +7,12 @@
 
 import Foundation
 
-struct WeatherModel {
-    let cityName : String
-    let temperature : Double
-    let conditionId : Int
-    
-    var stringTemperature : String {
-        return String(format: "%.1f", temperature)
-    }
-}
 
 struct MovieModel {
-    
+    let movieTitle: String
+    let movieOverview: String
+    let moviePopularity: Double
+    let poster: String
+    let movieReleaseDate: String
 }
 
