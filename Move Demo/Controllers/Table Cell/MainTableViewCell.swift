@@ -8,10 +8,7 @@
 import UIKit
 
 class MainTableViewCell: UITableViewCell{
-    
-    
-    
-    
+
     @IBOutlet var collectionView: UICollectionView!
     
     static let identifier = "MainTableViewCell"
@@ -21,8 +18,8 @@ class MainTableViewCell: UITableViewCell{
     }
     
     var moviesManager = MoviesManager()
-    
     var moveModels = [MovieModel]()
+    
     
     func configure(with model: [MovieModel]){
         moveModels = model
@@ -43,7 +40,7 @@ class MainTableViewCell: UITableViewCell{
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        collectionView.reloadData()
         // Configure the view for the selected state
     }
     
@@ -64,7 +61,7 @@ extension MainTableViewCell: UICollectionViewDelegate, UICollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as! MainCollectionViewCell
         cell.configure(with: moveModels[indexPath.row])
-        return cell
+                return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -72,7 +69,7 @@ extension MainTableViewCell: UICollectionViewDelegate, UICollectionViewDataSourc
     }
 }
 
-
+//MARK: - Movie Manager Delegate
 extension MainTableViewCell: MovieManagerDelegate {
     
     func didUpdateListOfMovies(_ movieManager: MoviesManager, movies: [MovieModel]) {

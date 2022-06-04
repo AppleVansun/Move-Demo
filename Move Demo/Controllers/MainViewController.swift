@@ -48,7 +48,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
 extension MainViewController: MovieManagerDelegate {
     func didUpdateListOfMovies(_ movieManager: MoviesManager, movies: [MovieModel]) {
         countCC = movies.count
-        //self.movieModels = movies
         
     }
     

@@ -36,4 +36,16 @@ class MainCollectionViewCell: UICollectionViewCell {
             
         }
     }
+    
+//    public func configureTV(with model: TvModel) {
+//
+//        let url = URL(string: "https://image.tmdb.org/t/p/original" + model.posterTv)
+//        DispatchQueue.main.async {
+//            self.imageView.kf.setImage(with: url)
+//            self.label.text = model.tvTitle
+//            self.reliseLabel.text = model.tvReleaseDate
+//
+//        }
+//    }
 }
+

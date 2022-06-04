@@ -63,11 +63,43 @@
                     <tabBarItem key="tabBarItem" title="Main" image="livephoto.play" catalog="system" selectedImage="livephoto.play" id="EG9-o5-AuO"/>
                     <connections>
                         <outlet property="mainTable" destination="u8v-d4-zW9" id="3YQ-wg-F81"/>
+                        <segue destination="SX0-F6-0Kq" kind="presentation" identifier="goToMovie" id="0di-Wk-Fx7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oor-cA-vs9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-723" y="-777"/>
+            <point key="canvasLocation" x="-723" y="-1149"/>
+        </scene>
+        <!--Movie View Controller-->
+        <scene sceneID="nLr-H3-h2q">
+            <objects>
+                <viewController id="SX0-F6-0Kq" customClass="MovieViewController" customModule="Movie_Demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ttW-jA-NRa">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="e1f-hZ-dDM">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="600"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="600" id="JVT-CB-y0h"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Z8d-WD-3dH"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="e1f-hZ-dDM" firstAttribute="top" secondItem="Z8d-WD-3dH" secondAttribute="top" id="690-7D-y4r"/>
+                            <constraint firstItem="e1f-hZ-dDM" firstAttribute="leading" secondItem="Z8d-WD-3dH" secondAttribute="leading" id="PPf-T4-Exq"/>
+                            <constraint firstItem="e1f-hZ-dDM" firstAttribute="trailing" secondItem="Z8d-WD-3dH" secondAttribute="trailing" id="vd7-ID-knc"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="e1f-hZ-dDM" id="EEd-d3-yVz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5h3-Sh-5QL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="73.913043478260875" y="-1149.1071428571429"/>
         </scene>
         <!--Profile-->
         <scene sceneID="ehc-iz-5pZ">
@@ -109,7 +141,7 @@
             </objects>
             <point key="canvasLocation" x="-723" y="180"/>
         </scene>
-        <!--Favorite View Controller-->
+        <!--TV-->
         <scene sceneID="Xog-aI-8tk">
             <objects>
                 <viewController id="5IE-vU-8S8" customClass="FavoriteViewController" customModule="Movie_Demo" customModuleProvider="target" sceneMemberID="viewController">
@@ -130,7 +162,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="favoriteCell" id="Sd1-f0-Mpa" customClass="FavoriteCell" customModule="Movie_Demo" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="favoriteCell" translatesAutoresizingMaskIntoConstraints="NO" id="Sd1-f0-Mpa" customClass="FavoriteCell" customModule="Movie_Demo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="250" height="400"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="mmi-9Y-IFZ">
@@ -171,7 +203,9 @@
                             <constraint firstItem="m7Y-9z-THf" firstAttribute="leading" secondItem="VQJ-1B-DUC" secondAttribute="leading" id="xhv-25-K3T"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="mostRecent" id="ynh-yq-qJF"/>
+                    <tabBarItem key="tabBarItem" title="TV" image="appletv" catalog="system" selectedImage="appletv" id="ynh-yq-qJF">
+                        <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBarItem>
                     <connections>
                         <outlet property="favoriteCollectionView" destination="m7Y-9z-THf" id="RHG-S2-545"/>
                     </connections>
@@ -205,6 +239,7 @@
     </scenes>
     <resources>
         <image name="MovieAvatar" width="640" height="640"/>
+        <image name="appletv" catalog="system" width="128" height="115"/>
         <image name="livephoto.play" catalog="system" width="128" height="122"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <systemColor name="systemBackgroundColor">

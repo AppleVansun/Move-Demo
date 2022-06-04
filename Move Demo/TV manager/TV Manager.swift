@@ -8,16 +8,16 @@
 import Foundation
 
 
-protocol MovieManagerDelegate {
-    func didUpdateListOfMovies(_ movieManager: MoviesManager, movies: [MovieModel])
+protocol TVManagerDelegate {
+    func didUpdateListOfTv(_ tvManager: TvManager, tv: [TvModel])
     func didFailWithError(error: Error)
 }
 
-struct MoviesManager {
+struct TvManager {
     
-    var delegate : MovieManagerDelegate?
+    var delegate : TVManagerDelegate?
     let movieURL =
-    "https://api.themoviedb.org/3/discover/movie?api_key=e9d089d86a9be0071f7eb06ee44c9a88&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate#"
+    "https://api.themoviedb.org/3/discover/tv?api_key=e9d089d86a9be0071f7eb06ee44c9a88&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false&with_watch_monetization_types=flatrate&with_status=0&with_type=0"
     // key: e9d089d86a9be0071f7eb06ee44c9a88
     
     func fetchMovies () {
@@ -42,7 +42,7 @@ struct MoviesManager {
                 }
                 if let safeData = data {
                     if let results = self.parseJSON(safeData){
-                        delegate?.didUpdateListOfMovies(self, movies: results)
+                        delegate?.didUpdateListOfTv(self, tv: results)
                         //print(results[0])
                     }
                 }
@@ -51,29 +51,22 @@ struct MoviesManager {
         }
     }
     
-    func parseJSON (_ data: Data) -> [MovieModel]? {
+    func parseJSON (_ data: Data) -> [TvModel]? {
         let decoder = JSONDecoder()
         do {
-            let decoderedData = try decoder.decode(MovieData.self, from: data)
+            let decoderedData = try decoder.decode(TvData.self, from: data)
             
-            var moviesModels = [MovieModel]()
+            var tvModels = [TvModel]()
             
             for each in decoderedData.results {
-                
-                let name = each.title
-                
-                let reliseDate = each.release_date
-                
-                let movieDescription = each.overview
-                
-                let popularity = each.popularity
-                
+                let name = each.name
+                let reliseDate = each.first_air_date
                 let poster = each.poster_path
-                
-                let temp = MovieModel(movieTitle: name, movieOverview: movieDescription, moviePopularity: popularity, poster: poster, movieReleaseDate: reliseDate)
-                moviesModels.append(temp)
+                let temp = TvModel(tvTitle: name, posterTv: poster ?? "/rRWsly2bqP21XZdNB0QbaB1cZV1.jpg", tvReleaseDate: reliseDate)
+                tvModels.append(temp)
             }
-            return moviesModels
+            //print(tvModels)
+            return tvModels
         } catch {
             delegate?.didFailWithError(error: error)
             return nil

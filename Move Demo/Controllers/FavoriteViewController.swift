@@ -10,44 +10,48 @@ import Kingfisher
 
 class FavoriteViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    
+    var tvManager = TvManager()
+    var tvModels = [TvModel]()
     
     @IBOutlet weak var favoriteCollectionView: UICollectionView!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        favoriteCollectionView.backgroundColor = .black
+        tvManager.delegate = self
+        tvManager.fetchMovies()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 250, height: 400)
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = favoriteCollectionView.dequeueReusableCell(withReuseIdentifier: "favoriteCell", for: indexPath) as! FavoriteCell
         cell.backgroundColor = .black
-        let url = URL(string: "https://image.tmdb.org/t/p/original" + "/jrgifaYeUtTnaH7NF5Drkgjg2MB.jpg")
+        let url = URL(string: "https://image.tmdb.org/t/p/original" + tvModels[indexPath.row].posterTv)
         cell.favoriteImage.kf.setImage(with: url)
         cell.favoriteImage.layer.cornerRadius = 40
-        
-        
         return cell
     }
     
+   
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        favoriteCollectionView.backgroundColor = .black
-     
+}
+
+extension FavoriteViewController: TVManagerDelegate {
+    func didUpdateListOfTv(_ tvManager: TvManager, tv: [TvModel]) {
+        self.tvModels = tv
+        print(tv)
     }
     
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func didFailWithError(error: Error) {
+        print(error)
     }
-    */
-
+    
+    
 }
